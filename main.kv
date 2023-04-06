@@ -1,14 +1,21 @@
 <Plotter>:
     BoxLayout:
         size_hint: 1, 1
+        orientation: "vertical"
+
+        BoxLayout:
+            id: graph
+            size_hint: 1, 0.5
+            orientation: "vertical"
 
         BoxLayout:
             size_hint: 1, 0.5
             orientation: "vertical"
 
-            Label
-                text: "Hello"
+            TextInput:
+                size_hint: 0.2, 1
+                orientation: "vertical"
 
-        BoxLayout:
-            size_hint: 1, 0.5
-            orientation: "vertical"
+            Switch:
+                size_hint: 0.2, 1
+                orientation: "vertical"
