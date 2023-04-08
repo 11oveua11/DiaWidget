@@ -13,12 +13,16 @@ class MainApp(App):
 class Plotter(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.samples = 512
-        self.graph = Graph(xmin=0, xmax=512, ymin=0, ymax=512)
+        self.samples = 32
+        self.graph = Graph(xmin=0, xmax=self.samples, ymin=-1, ymax=1)
         self.ids.graph.add_widget(self.graph)
-        self.plot_x = np.linspace(0,1, self.samples)
-        self.plot_y = np.linspace(0,1, self.samples)
+        self.plot_x = np.linspace(0, 1, self.samples)
+        self.plot_y = np.sin(4*np.pi*self.plot_x)
         self.plot = LinePlot()
-        self.plot.points = [range(2)]
+        self.plot.points = ([(x, self.plot_y[x]) for x in range(self.samples)])
+        self.graph.add_plot(self.plot)
+
+    def update_plot (self):
+        pass
 
 MainApp().run()
