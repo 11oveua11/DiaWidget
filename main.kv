@@ -1,16 +1,15 @@
-<Plotter>:
+<BoxLayoutPlotter>:
     BoxLayout:
         size_hint: 1, 1
         orientation: "vertical"
 
         BoxLayout:
-            id: graph
-            size_hint: 1, 0.5
+            id: box_for_cur_graph
+            size_hint: 1, 0.4
             orientation: "vertical"
-            padding: 10, 10, 0, 10
 
         BoxLayout:
-            size_hint: 1, 0.3
+            size_hint: 1, 0.2
             orientation: "vertical"
             padding: 20
 
@@ -24,7 +23,3 @@
             Button:
                 size_hint: 0.2, 0.1
                 orientation: "vertical"
-
-        BoxLayout:
-            size_hint: 1, 0.2
-            orientation: "vertical"

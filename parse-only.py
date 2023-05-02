@@ -1,48 +1,7 @@
-from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
-from kivy.core.window import Window
-from kivy_garden.graph import Graph, LinePlot
-
 import requests
 from bs4 import BeautifulSoup
 
-Window.size = (400 , 500)
 
-class MainApp(App):
-    def build(self):
-
-        return BoxLayoutPlotter()
-
-class BoxLayoutPlotter(BoxLayout):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        cd = Cur_data()
-        cdate, currency, cdate_label, currency_label = cd.get_cur_data()
-
-        self.my_graph = Graph(xmin=0, xmax=len(cdate),
-                            ymin=min(currency), ymax=max(currency),
-                            x_grid=True, y_grid=True,
-                            xlabel=str(cdate),
-                            x_grid_label=False, y_grid_label=True,
-                            x_ticks_major=1, y_ticks_major=0.1
-
-                              )
-        self.ids.box_for_cur_graph.add_widget(self.my_graph)
-        self.my_plot = LinePlot(color=[1, 1, 0, 1], line_width=1.5)
-
-        cd = Cur_data()
-        cdate, currency, cdate_label, currency_label = cd.get_cur_data()
-        print(cdate)
-        print(currency)
-        print(list(zip(range(10),currency)))
-        self.my_plot.points = list(zip(range(10),currency))
-        #self.my_plot.points = [(1,76), (2,77), (3,78), (4,78), (5,77), (6,77), (7,77), (8,77), (9,77), (10,77)]
-
-        self.my_graph.add_plot(self.my_plot)
-
-
-    def update_plot (self):
-        pass
 
 class Cur_data:
 
@@ -74,8 +33,10 @@ class Cur_data:
 
             self.cur_data.append((str(self.cdate[i]), float(str(self.currency[i]))))
 
-        return self.cdate, self.currency, self.cdate_label, self.currency_label
+        return self.cur_data, self.cdate_label, self.currency_label
 
 
+cd = Cur_data()
 
-MainApp().run()
+print(cd.get_cur_data())
+
